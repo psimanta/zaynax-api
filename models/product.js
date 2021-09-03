@@ -25,6 +25,10 @@ const productSchema = Schema({
     size: {
         type: String,
         required: true,
+    },
+    image: {
+        data: Buffer,
+        contentType: String,
     }
 }, { timestamps: true });
 
