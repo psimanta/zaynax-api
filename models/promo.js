@@ -4,6 +4,7 @@ const promoSchema = Schema({
     name: {
         type: String,
         required: true,
+        unique: true
     },
     start: {
         type: Date,

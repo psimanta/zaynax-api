@@ -47,3 +47,21 @@ module.exports.login = async (req, res) => {
         user: _.pick(user, ["username", "role"])
     })
 }
+
+module.exports.adminLogin = async (req, res) => {
+    let user = await User.findOne({ username: req.body.username });
+    if (!user) return res.status(400).send("Invalid Credentials");
+
+    const validUser = await bcrypt.compare(req.body.password, user.password);
+    if (!validUser) return res.status(400).send("Invalid Credentials")
+
+    const role = user.role
+    if (role !== "admin") return res.status(400).send("Not Authorized")
+
+    const token = user.generateJWT();
+    return res.status(200).send({
+        message: "login successful",
+        token: token,
+        user: _.pick(user, ["username", "role"])
+    })
+}

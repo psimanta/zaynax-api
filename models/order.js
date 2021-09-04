@@ -4,6 +4,7 @@ const orderSchema = Schema({
     orderNo: {
         type: String,
         required: true,
+        unique: true,
     },
     price: {
         type: Number,

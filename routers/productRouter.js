@@ -4,9 +4,11 @@ const {
     getImage,
     addProduct
 } = require("../controllers/productController");
+const authorize = require("../middlewares/authorize");
+const admin = require("../middlewares/admin");
 
 router.route("/")
-    .post(addProduct)
+    .post([authorize, admin], addProduct)
     .get(getProducts);
 
 router.route("/image/:id")
