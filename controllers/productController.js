@@ -16,7 +16,7 @@ module.exports.addProduct = async (req, res) => {
                 product.image.data = data;
                 product.image.contentType = files.image.type;
                 product.save((err, result) => {
-                    if (err) res.status(500).send("Internal Server error!");
+                    if (err) return res.status(500).send("Internal Server error!");
                     else return res.status(201).send({
                         message: "Product Created Successfully!",
                         data: _.pick(result, ["name", "price"])
