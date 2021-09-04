@@ -29,6 +29,9 @@ const productSchema = Schema({
     image: {
         data: Buffer,
         contentType: String,
+    },
+    active: {
+        type: Boolean,
     }
 }, { timestamps: true });
 
