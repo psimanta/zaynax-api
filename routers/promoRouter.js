@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { addPromo, getPromos, getPromoDetail } = require("../controllers/promoController");
+const { addPromo, getPromos, getPromoDetail, checkPromo } = require("../controllers/promoController");
 const authorize = require("../middlewares/authorize");
 const admin = require("../middlewares/admin");
 
@@ -9,5 +9,7 @@ router.route("/")
 
 router.route("/:id")
     .get(getPromoDetail)
+router.route("/check")
+    .post(checkPromo);
 
 module.exports = router

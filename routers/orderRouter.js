@@ -4,7 +4,7 @@ const authorize = require("../middlewares/authorize");
 const admin = require("../middlewares/admin");
 
 router.route("/")
-    .post([authorize, admin], addOrder)
+    .post(addOrder)
     .get([authorize, admin], getOrders)
 
 router.route("/:id")

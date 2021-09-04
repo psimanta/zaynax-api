@@ -30,7 +30,7 @@ module.exports.addProduct = async (req, res) => {
 }
 
 module.exports.getProducts = async (req, res) => {
-    const products = await Product.find()
+    const products = await Product.find({ active: true })
         .select({ image: 0 })
     return res.status(200).send(products);
 }
