@@ -9,6 +9,6 @@ router.route("/")
 
 router.route("/:id")
     .get([authorize, admin], getOrderDetail)
-    .patch([authorize, admin], updateOrder)
+    .patch([], updateOrder)
 
 module.exports = router

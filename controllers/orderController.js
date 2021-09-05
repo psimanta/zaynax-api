@@ -29,6 +29,7 @@ module.exports.updateOrder = async (req, res) => {
         const order = await Order.updateOne({ _id: orderId }, { status: status });
         return res.status(200).send("Order Updated");
     } catch (err) {
+        console.log(err);
         return res.status(400).send("Something went wrong!");
     }
 
