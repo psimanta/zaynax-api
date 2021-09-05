@@ -36,6 +36,19 @@ module.exports.getProducts = async (req, res) => {
 }
 
 
+module.exports.searchResult = async (req, res) => {
+    const search = req.query.like
+    let products = []
+    if (!search) {
+        products = await Product.find({ active: true })
+            .select({ image: 0 })
+    } else {
+        products = await Product.find({ active: true, name: { "$regex": search, "$options": "i" } })
+            .select({ image: 0 })
+    }
+    return res.status(200).send(products);
+}
+
 module.exports.getImage = async (req, res) => {
     const productId = req.params.id;
     const product = await Product.findById(productId)
