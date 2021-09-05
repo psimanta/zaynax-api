@@ -14,10 +14,11 @@ module.exports.signUp = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(user.password, salt);
-
     const result = await user.save();
+    const token = user.generateJWT();
     return res.status(201).send({
-        message: "user created!"
+        message: "user created!",
+        token: token,
     })
 }
 
